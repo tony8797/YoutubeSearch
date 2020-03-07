@@ -4,7 +4,7 @@ import { Row, Col } from 'antd';
 import PageHeader from '../../components/pageHeader';
 import Box from '../../components/box';
 import LayoutWrapper from '../../components/layoutWrapper';
-import { notification, Input, Button } from 'antd';
+import { notification, Input } from 'antd';
 import YoutubeResult from './Result';
 import basicStyle from '../../assets/styles/constants';
 import actions from '../../redux/YoutubeSearch/actions';

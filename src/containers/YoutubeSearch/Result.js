@@ -2,23 +2,20 @@ import React from 'react';
 import HelperText from '../../components/helper-text';
 import { Button, Spin } from 'antd';
 import moment from 'moment';
-import PlayYoutubeVideo from '../../components/YoutubeSearch/PlayYoutubeVideo';
 import {
   YoutubeSearchListStyleWrapper,
   YoutubeSearchStyleWrapper,
 } from './YoutubeSearch.style';
 
-function SearchList(result, handleSelectedVideo) {
+function SearchList(result) {
   return (
     <YoutubeSearchListStyleWrapper className="youtubeResultList">
       {result.map(item => {
         const {
           publishedAt,
           title,
-          description,
           channelTitle,
           thumbnails,
-          channelId,
         } = item.snippet;
         
         const id = item.id.videoId;
@@ -27,13 +24,8 @@ function SearchList(result, handleSelectedVideo) {
           event.preventDefault();
           event.stopPropagation();
           window.open(`https://www.youtube.com/watch?v=${item.id.videoId}`, '_blank');
-          // handleSelectedVideo(item);
         };
-        const onChannelClick = event => {
-          event.preventDefault();
-          event.stopPropagation();
-          window.open(`https://www.youtube.com/channel/${channelId}`, '_blank');
-        };
+
         return (
           <div key={id} className="singleVideoResult" onClick={onClickVideo}>
             <div className="videoThumb">
@@ -60,15 +52,6 @@ function SearchList(result, handleSelectedVideo) {
 }
 
 function YoutubeResult({ YoutubeSearch, onPageChange }) {
-  const [selectedVideo, setSelectrdVideo] = React.useState(null);
-
-  const handleCancel = () => {
-    handleSelectedVideo(null);
-  };
-  const handleSelectedVideo = selectedVideo => {
-    setSelectrdVideo(selectedVideo);
-  };
-
   const {
     searcText,
     result,
@@ -96,15 +79,7 @@ function YoutubeResult({ YoutubeSearch, onPageChange }) {
         <span>{`${totalCount}`} videos found</span>
       </p>
 
-      {/* {selectedVideo ? (
-        <PlayYoutubeVideo
-          selectedVideo={selectedVideo}
-          handleCancel={handleCancel}
-        />
-      ) : (
-        ''
-      )} */}
-      {SearchList(result, handleSelectedVideo)}
+      {SearchList(result)}
 
       <div className="youtubeSearchPagination">
         {prevPageToken ? (
