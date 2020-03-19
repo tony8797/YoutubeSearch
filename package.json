@@ -1,6 +1,6 @@
 {
   "name": "youtube-search",
-  "homepage": "https://tony8797.github.io/youtubeSearch",
+  "homepage": "https://tony8797.github.io/YoutubeSearch/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,6 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
