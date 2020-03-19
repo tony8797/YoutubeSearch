@@ -1,6 +1,10 @@
 {
   "name": "youtube-search",
+<<<<<<< HEAD
+  "homepage": "https://tony8797.github.io/youtubeSearch",
+=======
   "homepage": "https://tony8797.github.io/YoutubeSearch/",
+>>>>>>> release/1.0.2
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +16,7 @@
     "clone": "^2.1.2",
     "clone-deep": "^4.0.1",
     "fs": "^0.0.1-security",
+    "gh-pages": "^2.2.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "react": "^16.13.0",
@@ -29,8 +34,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+<<<<<<< HEAD
+    "deploy": "gh-pages -b master -d build"
+=======
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+>>>>>>> release/1.0.2
   },
   "eslintConfig": {
     "extends": "react-app"
