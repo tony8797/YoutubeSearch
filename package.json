@@ -1,5 +1,6 @@
 {
   "name": "youtube-search",
+  "homepage": "https://tony8797.github.io/youtubeSearch",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
