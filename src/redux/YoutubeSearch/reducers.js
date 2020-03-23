@@ -6,7 +6,9 @@ const initState = {
   result: [],
   loading: false,
   error: false,
-  // searchHistory: {}
+  favoriteIds: [],
+  favoriteItemList: [],
+  favoritePage: true,
 };
 
 export default function reducer(state = initState, action) {
@@ -27,11 +29,17 @@ export default function reducer(state = initState, action) {
         prevPageToken: action.prevPageToken,
         nextPageToken: action.nextPageToken,
       };
-    // case actions.YOUTUBE_HISTORY_RESULT:
-    //   return {
-    //     ...state,
-    //     [`${action.searcText}_${action.pageToken}`]: action.searchResult,
-    //   };
+    case actions.FAVORITE_LIST:
+      return {
+        ...state,
+        favoriteIds: action.favoriteIds,
+      };
+    case actions.FAVORITE_ITEM_LIST:
+        console.log({action});
+        return {
+          ...state,
+          favoriteItemList: action.favoriteItemList,
+        };
     case actions.YOUTUBE_ERROR_RESULT:
       return {
         ...state,

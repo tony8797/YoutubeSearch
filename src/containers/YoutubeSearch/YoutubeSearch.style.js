@@ -8,8 +8,7 @@ export function transition(timing = 0.3) {
       -moz-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
       -ms-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
       -o-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
-      transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
-    `;
+      transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);`;
   }
   
   // Border Radius
@@ -19,8 +18,7 @@ export function transition(timing = 0.3) {
       -moz-border-radius: ${radius};
       -ms-transition: ${radius};
       -o-border-radius: ${radius};
-      border-radius: ${radius};
-    `;
+      border-radius: ${radius};`;
   }
   
   // Box Shadow
@@ -28,8 +26,7 @@ export function transition(timing = 0.3) {
     return `
       -webkit-box-shadow: ${shadow};
       -moz-box-shadow: ${shadow};
-      box-shadow: ${shadow};
-    `;
+      box-shadow: ${shadow};`;
   }
   
 const YoutubeSearchListStyleWrapper = styled.div`
@@ -75,7 +72,14 @@ const YoutubeSearchListStyleWrapper = styled.div`
         width: 200px;
         height: 200px;
       }
-      
+
+      .favoriteIcon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 99
+      }
+
       figcaption {
         position: absolute;
         top: 0;

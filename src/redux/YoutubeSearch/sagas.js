@@ -1,7 +1,7 @@
 import { all, takeEvery, put, call } from 'redux-saga/effects';
 import actions from './actions';
 import youtubeSearchApi from '../../config/youtube.config';
-const maxResults = 10;
+const maxResults = 12;
 const youtubeSearchURL = `https://www.googleapis.com/youtube/v3/search?maxResults=${maxResults}&type=video&key=${youtubeSearchApi}&part=snippet`;
 
 const onSearchReqeust = async (searcText, pageToken) =>
@@ -28,11 +28,6 @@ function* searchRequest({ payload }) {
           searchResult.nextPageToken,
           searchResult.prevPageToken
         ),
-        // actions.youtubeSearchHistory(
-        //   searcText,
-        //   pageToken,
-        //   searchResult
-        // )
       );
     } else {
       yield put(actions.youtubeSearchSuccess());

@@ -21,6 +21,12 @@ const ComponentTitleWrapper = styled.h1`
       width: 300px;
     }
   }
+  .favoriteHeadTitle {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: #ffffff;
+  }
 `;
 
 export { ComponentTitleWrapper };
