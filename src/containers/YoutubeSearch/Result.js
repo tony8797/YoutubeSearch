@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import HelperText from '../../components/helper-text';
 import { Button, Spin } from 'antd';
 import { HeartTwoTone } from '@ant-design/icons';
+import PlayYoutubeVideo from './PlayYoutubeVideo';
 import moment from 'moment';
 import {
   YoutubeSearchListStyleWrapper,
@@ -12,14 +14,11 @@ function SearchList({
   result, 
   onClickFavorite, 
   favoriteIds, 
-  favoritePage, 
-  favoriteItemList,
+  handleSelectedVideo,
 }) {
-  let videoList = favoritePage ? favoriteItemList : result;
-  console.log()
   return (
     <YoutubeSearchListStyleWrapper className="youtubeResultList">
-      {videoList.map(item => {
+      {result.map(item => {
         const {
           publishedAt,
           title,
@@ -27,28 +26,52 @@ function SearchList({
           thumbnails,
           description,
         } = item.snippet;
+
+        let timeString = "";
         
+        if(item.duration) {
+          const { duration } = item;
+          let timeStringArr = duration.replace(/PT|S/g, '').split(/H|M/g);
+          // 影片時間補 0
+          for(let i=0; i< timeStringArr.length; i++) {
+            if(timeStringArr[i].length === '0') timeStringArr[i] = "00";
+            else if(timeStringArr[i]< 10) timeStringArr[i] = `0${timeStringArr[i]}`;
+          }
+          timeString = timeStringArr.join(":");
+        }
+
         const id = item.id.videoId;
         const updateDate = moment(publishedAt).format('YYYY/MM/DD');
+
+        // 播放影片
+        const onClick = event => {
+          event.preventDefault();
+          event.stopPropagation();
+          handleSelectedVideo(item);
+        };
+
+        // 開啟影片分頁
         const onClickVideo = event => {
           event.preventDefault();
           event.stopPropagation();
           window.open(`https://www.youtube.com/watch?v=${item.id.videoId}`, '_blank');
         };
-        
+
+        // 收藏 icon 顏色
+        let heartTwoToneColor = favoriteIds.includes(id)? "#eb2f96": "#000000";
         return (
-          <div key={id} className="singleVideoResult" onClick={(e) => onClickFavorite(id, item, e)}>
+          <div key={id} className="singleVideoResult" onClick={onClick}>
             <div className="videoThumb">
               <img alt="#" src={thumbnails.high.url} />
-              {
-                favoriteIds.includes(id)?
-                <HeartTwoTone className="favoriteIcon" twoToneColor="#eb2f96" />
-                :
-                <HeartTwoTone className="favoriteIcon" twoToneColor="black" />
-              }
+              <HeartTwoTone 
+                className="favoriteIcon" 
+                twoToneColor={heartTwoToneColor} 
+                onClick={(e) => onClickFavorite(id, item, e)}
+              />
+              <div className="videoTime">{timeString}</div>
               <figcaption>
                 <div id="videoHoverDescription">
-                  <div>{description.length > 0 ? description : '無描述'}</div>
+                  <div className="desc">{description.length > 0 ? description : '無描述'}</div>
                   <div><b>{`${channelTitle}`}</b></div>
                   <div>{updateDate}</div>
                 </div>
@@ -72,10 +95,17 @@ function YoutubeResult({
   onPageChange, 
   onClickFavorite, 
   favoriteIds, 
-  favoritePage,
   favoriteItemList,
 }) {
-  console.log(favoriteItemList);
+  const [selectedVideo, setSelectrdVideo] = React.useState(null);
+
+  const handleCancel = () => {
+    handleSelectedVideo(null);
+  };
+  const handleSelectedVideo = selectedVideo => {
+    setSelectrdVideo(selectedVideo);
+  };
+
   const {
     searcText,
     result,
@@ -91,39 +121,48 @@ function YoutubeResult({
   if (loading) {
     return <Spin style={{ width: '100%' }}/>;
   }
-  if (!favoritePage && (error || !totalCount)) {
+  if (error || !totalCount) {
     return <HelperText text="THERE ARE SOME ERRORS" />;
   }
-  if (!favoritePage && result.length === 0) {
+  if (result.length === 0) {
     return <HelperText text="No Result Found" />;
   }
-  if(favoritePage && favoriteItemList.length === 0) {
-    return <HelperText text="No Favorite Videos" />;
-  }
-  let totalResult = favoritePage? favoriteItemList.length: totalCount;
+
   return (
     <YoutubeSearchStyleWrapper className="isoYoutubeSearchResult">
       <p className="totalResultFind">
-        <span>{`${totalResult}`} videos found</span>
+        <span>搜尋結果 {`${totalCount}`} 部影片</span>
+        <Link className="linkBtn" to={`/favoriteList`}>
+          <Button icon={<HeartTwoTone className="favoriteIcon" twoToneColor="#eb2f96" />}>收藏列表</Button>
+        </Link>
       </p>
+
+      {selectedVideo ? (
+        <PlayYoutubeVideo
+          selectedVideo={selectedVideo}
+          handleCancel={handleCancel}
+        />
+      ) : (
+        ''
+      )}
 
       <SearchList 
         result={result}
         onClickFavorite={onClickFavorite}
         favoriteIds={favoriteIds}
-        favoritePage={favoritePage}
         favoriteItemList={favoriteItemList}
+        handleSelectedVideo={handleSelectedVideo}
       />
 
       <div className="youtubeSearchPagination">
-        {prevPageToken && !favoritePage ? (
+        {prevPageToken ? (
           <Button onClick={() => onPageChange(searcText, prevPageToken)}>
             Previous
           </Button>
         ) : (
           ''
         )}
-        {nextPageToken && !favoritePage ? (
+        {nextPageToken ? (
           <Button onClick={() => onPageChange(searcText, nextPageToken)}>
             Next
           </Button>

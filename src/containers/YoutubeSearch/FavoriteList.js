@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Row, Col } from 'antd';
-import { HeartTwoTone } from '@ant-design/icons';
+import { Row, Col, Button } from 'antd';
+import { HeartTwoTone, HomeOutlined } from '@ant-design/icons';
 import PageHeader from '../../components/pageHeader';
 import Box from '../../components/box';
 import LayoutWrapper from '../../components/layoutWrapper';
@@ -9,6 +10,7 @@ import basicStyle from '../../assets/styles/constants';
 import actions from '../../redux/YoutubeSearch/actions';
 import NoAPIKey from '../../components/noApiKey';
 import youtubeSearchApi from '../../config/youtube.config';
+import PlayYoutubeVideo from './PlayYoutubeVideo';
 import moment from 'moment';
 
 import {
@@ -17,7 +19,6 @@ import {
 } from './YoutubeSearch.style';
 
 const { 
-  // onPageChange, 
   onChangeFavorite,
   onChangeFavoriteItemList } = actions;
 
@@ -25,7 +26,22 @@ export default function FavoriteList() {
   const YoutubeSearch = useSelector(state => state.YoutubeSearch);
   const dispatch = useDispatch();
   const { favoriteIds, favoriteItemList } = YoutubeSearch;
+  const [selectedVideo, setSelectrdVideo] = React.useState(null);
+  const handleCancel = () => {
+    handleSelectedVideo(null);
+  };
+  const handleSelectedVideo = selectedVideo => {
+    setSelectrdVideo(selectedVideo);
+  };
 
+  // 播放影片
+  const onClick = (item, event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    handleSelectedVideo(item);
+  };
+
+  // 初始化收藏影片
   React.useEffect(() => {
     let initFavoriteIds = localStorage.getItem('favoriteIds');
     let initFavoriteItemList = localStorage.getItem('favoriteItemList');
@@ -36,8 +52,11 @@ export default function FavoriteList() {
     }
   }, [dispatch]);
 
+  // 收藏選取及取消
   const onClickFavorite = React.useCallback(
-    (videoId, item, e) => {
+    (videoId, item, event) => {
+      event.preventDefault();
+      event.stopPropagation();
       if(favoriteIds.includes(videoId)) {
         favoriteIds.splice(favoriteIds.indexOf(videoId), 1);
         let indexOfList = favoriteItemList.findIndex((element) => element.id.videoId === videoId);
@@ -58,68 +77,98 @@ export default function FavoriteList() {
   return (
     <>
       <PageHeader>
-        <div className="favoriteHeadTitle">Favorite List</div>
+        <div className="favoriteHeadTitle">收藏列表</div>
       </PageHeader>
       <LayoutWrapper>
         <Row style={rowStyle} gutter={gutter} justify="start">
           <Col md={24} sm={24} xs={24} style={colStyle}>
             {youtubeSearchApi ? (
               <Box style={{ minHeight: 220 }}>
-                  <YoutubeSearchStyleWrapper className="isoYoutubeSearchResult">
-                    <p className="totalResultFind">
-                      <span>{`${favoriteItemList.length}`} favorite videos</span>
-                    </p>
+                <YoutubeSearchStyleWrapper className="isoYoutubeSearchResult">
+                  <p className="totalResultFind">
+                    <span>{`已收藏 ${favoriteItemList.length} 部影片`}</span>
+                    <Link className="linkBtn" to={`/youtube`}>
+                      <Button icon={<HomeOutlined className="favoriteIcon" twoToneColor="#eb2f96" />}>
+                        首頁
+                      </Button>
+                    </Link>
+                  </p>
 
-                    <YoutubeSearchListStyleWrapper className="youtubeResultList">
-                      {
-                        favoriteItemList.length > 0 ?
-                          favoriteItemList.map(item => {
-                            const {
-                              publishedAt,
-                              title,
-                              channelTitle,
-                              thumbnails,
-                              description,
-                            } = item.snippet;
-                            
-                            const id = item.id.videoId;
-                            const updateDate = moment(publishedAt).format('YYYY/MM/DD');
-                            const onClickVideo = event => {
-                              event.preventDefault();
-                              event.stopPropagation();
-                              window.open(`https://www.youtube.com/watch?v=${item.id.videoId}`, '_blank');
-                            };
-                            
-                            return (
-                              <div key={id} className="singleVideoResult" onClick={(e) => onClickFavorite(id, item, e)}>
-                                <div className="videoThumb">
-                                  <img alt="#" src={thumbnails.high.url} />
-                                  {
-                                    favoriteIds.includes(id)?
-                                    <HeartTwoTone className="favoriteIcon" twoToneColor="#eb2f96" />
-                                    :
-                                    <HeartTwoTone className="favoriteIcon" twoToneColor="black" />
-                                  }
-                                  <figcaption>
-                                    <div id="videoHoverDescription">
-                                      <div>{description.length > 0 ? description : '無描述'}</div>
-                                      <div><b>{`${channelTitle}`}</b></div>
-                                      <div>{updateDate}</div>
-                                    </div>
-                                  </figcaption>
-                                </div>
+                  {selectedVideo ? (
+                    <PlayYoutubeVideo
+                      selectedVideo={selectedVideo}
+                      handleCancel={handleCancel}
+                    />
+                  ) : (
+                    ''
+                  )}
 
-                                <div className="videoDescription" onClick={onClickVideo}>
-                                  <h3 className="videoName">
-                                    <a href="# ">{`${title} `}</a>
-                                  </h3>
-                                </div>
+                  <YoutubeSearchListStyleWrapper className="youtubeResultList">
+                    {
+                      favoriteItemList.length > 0 ?
+                        favoriteItemList.map(item => {
+                          const {
+                            publishedAt,
+                            title,
+                            channelTitle,
+                            thumbnails,
+                            description,
+                          } = item.snippet;
+                          
+                          let timeString = "";
+                          
+                          if(item.duration) {
+                            const { duration } = item;
+                            let timeStringArr = duration.replace(/PT|S/g, '').split(/H|M/g);
+
+                            for(let i=0; i< timeStringArr.length; i++) {
+                              if(timeStringArr[i].length === '0') timeStringArr[i] = "00";
+                              else if(timeStringArr[i]< 10) timeStringArr[i] = `0${timeStringArr[i]}`;
+                            }
+                            timeString = timeStringArr.join(":");
+                          }
+
+                          const id = item.id.videoId;
+                          const updateDate = moment(publishedAt).format('YYYY/MM/DD');
+
+                          const onClickVideo = event => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            window.open(`https://www.youtube.com/watch?v=${item.id.videoId}`, '_blank');
+                          };
+                          
+                          // favorite icon color
+                          let heartTwoToneColor = favoriteIds.includes(id)? "#eb2f96": "#000000";
+
+                          return (
+                            <div key={id} className="singleVideoResult" onClick={(e) => onClick(item, e)}>
+                              <div className="videoThumb">
+                                <img alt="#" src={thumbnails.high.url} />
+                                  <HeartTwoTone className="favoriteIcon" 
+                                    twoToneColor={heartTwoToneColor} 
+                                    onClick={(e) => onClickFavorite(id, item, e)} 
+                                  />
+                                  <div className="videoTime">{timeString}</div>
+                                <figcaption>
+                                  <div id="videoHoverDescription">
+                                    <div className="desc">{description.length > 0 ? description : 'no description'}</div>
+                                    <div><b>{`${channelTitle}`}</b></div>
+                                    <div>{updateDate}</div>
+                                  </div>
+                                </figcaption>
                               </div>
-                            );
-                          }):null
-                      }
-                    </YoutubeSearchListStyleWrapper>
-                  </YoutubeSearchStyleWrapper>
+
+                              <div className="videoDescription" onClick={onClickVideo}>
+                                <h3 className="videoName">
+                                  <a href="# ">{`${title} `}</a>
+                                </h3>
+                              </div>
+                            </div>
+                          );
+                        }): null
+                    }
+                  </YoutubeSearchListStyleWrapper>
+                </YoutubeSearchStyleWrapper>
               </Box>
             ) : (
               <NoAPIKey />

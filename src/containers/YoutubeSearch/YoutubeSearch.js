@@ -17,7 +17,7 @@ const { Search } = Input;
 export default function YoutubeSearch() {
   const YoutubeSearch = useSelector(state => state.YoutubeSearch);
   const dispatch = useDispatch();
-  const { favoriteIds, favoriteItemList, favoritePage } = YoutubeSearch;
+  const { favoriteIds, favoriteItemList } = YoutubeSearch;
   const onSearch = React.useCallback(
     value => {
       if (value && value.length > 0) {
@@ -54,13 +54,13 @@ export default function YoutubeSearch() {
   }
 
   React.useEffect(() => {
-    if(!favoritePage) {
-      onSearch(YoutubeSearch.searcText);
-    }
+    onSearch(YoutubeSearch.searcText);
   }, [onSearch, YoutubeSearch.searcText]);
 
   const onClickFavorite = React.useCallback(
     (videoId, item, e) => {
+      e.preventDefault();
+      e.stopPropagation();
       if(favoriteIds.includes(videoId)) {
         favoriteIds.splice(favoriteIds.indexOf(videoId), 1);
         let indexOfList = favoriteItemList.findIndex((element) => element.id.videoId === videoId);
@@ -81,16 +81,12 @@ export default function YoutubeSearch() {
   return (
     <>
       <PageHeader>
-        {
-          favoritePage? 
-          <div className="favoriteHeadTitle">Favorite List</div>:
-          <Search
-            placeholder="Search on Youtube"
-            defaultValue={YoutubeSearch.searcText}
-            onSearch={onSearch}
-            className="headerSearch"
-          />
-        }
+        <Search
+          placeholder="Search on Youtube"
+          defaultValue={YoutubeSearch.searcText}
+          onSearch={onSearch}
+          className="headerSearch"
+        />
       </PageHeader>
       <LayoutWrapper>
         <Row style={rowStyle} gutter={gutter} justify="start">
@@ -102,7 +98,6 @@ export default function YoutubeSearch() {
                   onPageChange={handlePageChange}
                   onClickFavorite={onClickFavorite}
                   favoriteIds={favoriteIds}
-                  favoritePage={favoritePage}
                   favoriteItemList={favoriteItemList}
                 />
               </Box>

@@ -1,7 +1,7 @@
 import actions from './actions';
 
 const initState = {
-  searcText: 'React JS Conf',
+  searcText: '鬼滅',
   totalCount: 0,
   result: [],
   loading: false,

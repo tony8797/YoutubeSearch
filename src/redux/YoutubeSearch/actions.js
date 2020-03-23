@@ -16,7 +16,7 @@ const actions = {
       result,
       totalCount,
       nextPageToken,
-      prevPageToken
+      prevPageToken,
     ) => ({
       type: actions.YOUTUBE_SUCCESS_RESULT,
       result,

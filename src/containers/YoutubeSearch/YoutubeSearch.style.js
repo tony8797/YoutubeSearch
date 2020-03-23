@@ -1,33 +1,5 @@
 import styled from 'styled-components';
 import { palette } from 'styled-theme';
-
-// Transition
-export function transition(timing = 0.3) {
-    return `
-      -webkit-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
-      -moz-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
-      -ms-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
-      -o-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
-      transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);`;
-  }
-  
-  // Border Radius
-  export function borderRadius(radius = 0) {
-    return `
-      -webkit-border-radius: ${radius};
-      -moz-border-radius: ${radius};
-      -ms-transition: ${radius};
-      -o-border-radius: ${radius};
-      border-radius: ${radius};`;
-  }
-  
-  // Box Shadow
-  export function boxShadow(shadow = 'none') {
-    return `
-      -webkit-box-shadow: ${shadow};
-      -moz-box-shadow: ${shadow};
-      box-shadow: ${shadow};`;
-  }
   
 const YoutubeSearchListStyleWrapper = styled.div`
   width: 100%;
@@ -77,9 +49,22 @@ const YoutubeSearchListStyleWrapper = styled.div`
         position: absolute;
         top: 10px;
         right: 10px;
-        z-index: 99
+        z-index: 99;
+        font-size: 24px;
       }
 
+      .videoTime {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 99;
+        font-size: 12px;
+        color: white;
+        background-color: #5a5959;
+        padding: 0 2px;
+        border-radius: 2px;
+      }
+      
       figcaption {
         position: absolute;
         top: 0;
@@ -133,6 +118,16 @@ const YoutubeSearchListStyleWrapper = styled.div`
                 align-items: center;
                 color: white;
             }
+            .desc {
+              overflow:hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              -webkit-box-orient: vertical;
+              white-space: normal;
+              word-break: break-all;
+            }
         }
       }
 
@@ -182,7 +177,6 @@ const YoutubeSearchListStyleWrapper = styled.div`
                 text-overflow: ellipsis;
                 display: inline-block;
                 text-decoration: none;
-                ${transition('')};
 
                 &:hover {
                     color: ${palette('primary', 0)};
@@ -213,6 +207,11 @@ const YoutubeSearchStyleWrapper = styled.div`
     line-height: 1.3;
     padding-bottom: 15px;
     border-bottom: 1px solid ${palette('border', 2)};
+  }
+
+  .linkBtn {
+    color: white;
+    float: right;
   }
 
   .youtubeSearchPagination {
