@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0becb191d0922661add0a1bae1c9b334",
+    "revision": "063ea95f9ff065fa19b4203921958f76",
     "url": "/YoutubeSearch/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/YoutubeSearch/static/css/3.563af9af.chunk.css"
   },
   {
-    "revision": "a4e7bccd9a046b66154b",
+    "revision": "9d8597c500cad1653471",
     "url": "/YoutubeSearch/static/css/main.5f361e03.chunk.css"
   },
   {
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/YoutubeSearch/static/js/6.4e13e9d7.chunk.js"
   },
   {
-    "revision": "a4e7bccd9a046b66154b",
-    "url": "/YoutubeSearch/static/js/main.87c49f84.chunk.js"
+    "revision": "9d8597c500cad1653471",
+    "url": "/YoutubeSearch/static/js/main.83bf8a4d.chunk.js"
   },
   {
     "revision": "d0b74d8482766827ff58",
