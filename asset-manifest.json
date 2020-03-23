@@ -3,21 +3,21 @@
     "static/js/0.fa655483.chunk.js": "/YoutubeSearch/static/js/0.fa655483.chunk.js",
     "static/js/0.fa655483.chunk.js.map": "/YoutubeSearch/static/js/0.fa655483.chunk.js.map",
     "main.css": "/YoutubeSearch/static/css/main.5f361e03.chunk.css",
-    "main.js": "/YoutubeSearch/static/js/main.83bf8a4d.chunk.js",
-    "main.js.map": "/YoutubeSearch/static/js/main.83bf8a4d.chunk.js.map",
-    "runtime-main.js": "/YoutubeSearch/static/js/runtime-main.145c5780.js",
-    "runtime-main.js.map": "/YoutubeSearch/static/js/runtime-main.145c5780.js.map",
+    "main.js": "/YoutubeSearch/static/js/main.b5f694ca.chunk.js",
+    "main.js.map": "/YoutubeSearch/static/js/main.b5f694ca.chunk.js.map",
+    "runtime-main.js": "/YoutubeSearch/static/js/runtime-main.28ec288a.js",
+    "runtime-main.js.map": "/YoutubeSearch/static/js/runtime-main.28ec288a.js.map",
     "static/css/3.563af9af.chunk.css": "/YoutubeSearch/static/css/3.563af9af.chunk.css",
     "static/js/3.7a9724f2.chunk.js": "/YoutubeSearch/static/js/3.7a9724f2.chunk.js",
     "static/js/3.7a9724f2.chunk.js.map": "/YoutubeSearch/static/js/3.7a9724f2.chunk.js.map",
     "static/js/4.9bda8dc8.chunk.js": "/YoutubeSearch/static/js/4.9bda8dc8.chunk.js",
     "static/js/4.9bda8dc8.chunk.js.map": "/YoutubeSearch/static/js/4.9bda8dc8.chunk.js.map",
-    "static/js/5.c71f405e.chunk.js": "/YoutubeSearch/static/js/5.c71f405e.chunk.js",
-    "static/js/5.c71f405e.chunk.js.map": "/YoutubeSearch/static/js/5.c71f405e.chunk.js.map",
-    "static/js/6.4e13e9d7.chunk.js": "/YoutubeSearch/static/js/6.4e13e9d7.chunk.js",
-    "static/js/6.4e13e9d7.chunk.js.map": "/YoutubeSearch/static/js/6.4e13e9d7.chunk.js.map",
+    "static/js/5.3e0c18b1.chunk.js": "/YoutubeSearch/static/js/5.3e0c18b1.chunk.js",
+    "static/js/5.3e0c18b1.chunk.js.map": "/YoutubeSearch/static/js/5.3e0c18b1.chunk.js.map",
+    "static/js/6.5acd27ce.chunk.js": "/YoutubeSearch/static/js/6.5acd27ce.chunk.js",
+    "static/js/6.5acd27ce.chunk.js.map": "/YoutubeSearch/static/js/6.5acd27ce.chunk.js.map",
     "index.html": "/YoutubeSearch/index.html",
-    "precache-manifest.e3ae4742d1771a0b0096db5a48a48a5e.js": "/YoutubeSearch/precache-manifest.e3ae4742d1771a0b0096db5a48a48a5e.js",
+    "precache-manifest.a5cf098d7a6c38b83db2d24bba1b1fd8.js": "/YoutubeSearch/precache-manifest.a5cf098d7a6c38b83db2d24bba1b1fd8.js",
     "service-worker.js": "/YoutubeSearch/service-worker.js",
     "static/css/3.563af9af.chunk.css.map": "/YoutubeSearch/static/css/3.563af9af.chunk.css.map",
     "static/css/main.5f361e03.chunk.css.map": "/YoutubeSearch/static/css/main.5f361e03.chunk.css.map",
@@ -25,10 +25,10 @@
     "static/js/3.7a9724f2.chunk.js.LICENSE.txt": "/YoutubeSearch/static/js/3.7a9724f2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.145c5780.js",
+    "static/js/runtime-main.28ec288a.js",
     "static/css/3.563af9af.chunk.css",
     "static/js/3.7a9724f2.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.83bf8a4d.chunk.js"
+    "static/js/main.b5f694ca.chunk.js"
   ]
 }
