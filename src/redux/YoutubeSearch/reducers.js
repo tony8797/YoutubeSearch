@@ -35,7 +35,6 @@ export default function reducer(state = initState, action) {
         favoriteIds: action.favoriteIds,
       };
     case actions.FAVORITE_ITEM_LIST:
-        console.log({action});
         return {
           ...state,
           favoriteItemList: action.favoriteItemList,

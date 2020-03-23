@@ -11,11 +11,11 @@ import { Spin } from 'antd';
 // 路徑設定
 const publicRoutes = [
   {
-    path: '/youtube',
+    path: '/YoutubeSearch/',
     component: lazy(() => import('./containers/YoutubeSearch/YoutubeSearch')),
   },
   {
-    path: '/favoriteList',
+    path: '/YoutubeSearch/favoriteList',
     component: lazy(() => import('./containers/YoutubeSearch/FavoriteList')),
   },
 ];

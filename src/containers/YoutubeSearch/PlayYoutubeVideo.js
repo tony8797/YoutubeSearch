@@ -7,7 +7,6 @@ const ModalWrapper = YoutubeModal(Modal);
 
 export default function({ selectedVideo, handleCancel }) {
   const ops = { playerVars: { autoplay: 1 } };
-  console.log(selectedVideo);
   return (
     <ModalWrapper
       title={selectedVideo.snippet.tittle}
