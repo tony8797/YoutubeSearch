@@ -87,7 +87,10 @@ export default function FavoriteList() {
                 <YoutubeSearchStyleWrapper className="isoYoutubeSearchResult">
                   <p className="totalResultFind">
                     <span>{`已收藏 ${favoriteItemList.length} 部影片`}</span>
-                    <Link className="linkBtn" to={`/youtube`}>
+                    <Link className="linkBtn" 
+                      // to={`/YoutubeSearch/`}
+                      to={`/`}
+                    >
                       <Button icon={<HomeOutlined className="favoriteIcon" twoToneColor="#eb2f96" />}>
                         首頁
                       </Button>

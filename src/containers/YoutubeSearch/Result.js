@@ -132,7 +132,10 @@ function YoutubeResult({
     <YoutubeSearchStyleWrapper className="isoYoutubeSearchResult">
       <p className="totalResultFind">
         <span>搜尋結果 {`${totalCount}`} 部影片</span>
-        <Link className="linkBtn" to={`/favoriteList`}>
+        <Link className="linkBtn" 
+          // to={`/YoutubeSearch/favoriteList`}
+          to={`/favoriteList`}
+        >
           <Button icon={<HeartTwoTone className="favoriteIcon" twoToneColor="#eb2f96" />}>收藏列表</Button>
         </Link>
       </p>
