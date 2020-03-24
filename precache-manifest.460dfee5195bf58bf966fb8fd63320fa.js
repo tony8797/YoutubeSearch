@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d3b43b1a39f1d8a752db9ef2d2f948c6",
+    "revision": "35aeeab473691f4c2b683f20aca6e3d8",
     "url": "/YoutubeSearch/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/YoutubeSearch/static/css/3.563af9af.chunk.css"
   },
   {
-    "revision": "f4aa52861124da80e5dd",
+    "revision": "34c138c640b5ecc25cf6",
     "url": "/YoutubeSearch/static/css/main.5f361e03.chunk.css"
   },
   {
@@ -36,15 +36,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/YoutubeSearch/static/js/5.3e0c18b1.chunk.js"
   },
   {
-    "revision": "f62d1c17a84419c32d45",
-    "url": "/YoutubeSearch/static/js/6.5acd27ce.chunk.js"
+    "revision": "a311fd3ae4cc8e9e641e",
+    "url": "/YoutubeSearch/static/js/6.c874dfbb.chunk.js"
   },
   {
-    "revision": "f4aa52861124da80e5dd",
-    "url": "/YoutubeSearch/static/js/main.786522ca.chunk.js"
+    "revision": "34c138c640b5ecc25cf6",
+    "url": "/YoutubeSearch/static/js/main.29208fc6.chunk.js"
   },
   {
-    "revision": "1c0c95cef809a5af10be",
-    "url": "/YoutubeSearch/static/js/runtime-main.28ec288a.js"
+    "revision": "ed66e11c1d737848535a",
+    "url": "/YoutubeSearch/static/js/runtime-main.38d42632.js"
   }
 ]);
