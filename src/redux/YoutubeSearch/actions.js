@@ -2,6 +2,8 @@ const actions = {
     YOUTUBE_SEARCH: 'YOUTUBE_SEARCH',
     YOUTUBE_SUCCESS_RESULT: 'YOUTUBE_SUCCESS_RESULT',
     YOUTUBE_ERROR_RESULT: 'YOUTUBE_ERROR_RESULT',
+    FAVORITE_LIST: 'FAVORITE_LIST',
+    FAVORITE_ITEM_LIST: 'FAVORITE_ITEM_LIST',
     youtubeSearch: searcText => ({
       type: actions.YOUTUBE_SEARCH,
       payload: { searcText },
@@ -14,7 +16,7 @@ const actions = {
       result,
       totalCount,
       nextPageToken,
-      prevPageToken
+      prevPageToken,
     ) => ({
       type: actions.YOUTUBE_SUCCESS_RESULT,
       result,
@@ -22,16 +24,14 @@ const actions = {
       nextPageToken,
       prevPageToken,
     }),
-    // youtubeSearchHistory: (
-    //   searcText,
-    //   pageToken,
-    //   searchResult
-    // )=> ({
-    //     type: actions.YOUTUBE_HISTORY_RESULT,
-    //     searcText,
-    //     pageToken,
-    //     searchResult
-    // }),
+    onChangeFavorite: (favoriteIds) => ({
+      type: actions.FAVORITE_LIST,
+      favoriteIds
+    }),
+    onChangeFavoriteItemList: (favoriteItemList) => ({
+      type: actions.FAVORITE_ITEM_LIST,
+      favoriteItemList
+    }),
     youtubeSearchError: () => ({
       type: actions.YOUTUBE_ERROR_RESULT,
     }),

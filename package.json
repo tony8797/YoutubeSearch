@@ -1,10 +1,6 @@
 {
   "name": "youtube-search",
-<<<<<<< HEAD
-  "homepage": "https://tony8797.github.io/youtubeSearch",
-=======
   "homepage": "https://tony8797.github.io/YoutubeSearch/",
->>>>>>> release/1.0.2
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -21,10 +17,12 @@
     "moment": "^2.24.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-player": "^1.15.2",
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-youtube": "^7.9.0",
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3",
     "styled-components": "^5.0.1",
@@ -34,12 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-<<<<<<< HEAD
-    "deploy": "gh-pages -b master -d build"
-=======
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
->>>>>>> release/1.0.2
   },
   "eslintConfig": {
     "extends": "react-app"

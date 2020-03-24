@@ -11,9 +11,15 @@ import { Spin } from 'antd';
 // 路徑設定
 const publicRoutes = [
   {
-    path: '',
+    // path: '/YoutubeSearch', // github page
+    path: '/',
     component: lazy(() => import('./containers/YoutubeSearch/YoutubeSearch')),
-    exact: true,
+    exact:true
+  },
+  {
+    // path: '/YoutubeSearch/favoriteList', // github page
+    path: '/favoriteList',
+    component: lazy(() => import('./containers/YoutubeSearch/FavoriteList')),
   },
 ];
 
@@ -21,10 +27,10 @@ export default function Routes() {
   return (
     <ErrorBoundary>
       <Suspense fallback={<Spin />}>
-        <Router>
+        <Router >
           <Switch>
             {publicRoutes.map((route, index) => (
-              <Route key={index} path={route.path} exact={route.exact}>
+              <Route exact={route.exact} key={index} path={route.path}>
                 <route.component />
               </Route>
             ))}
